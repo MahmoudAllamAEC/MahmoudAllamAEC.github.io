@@ -7,16 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #08121e;
-      --bg2: #0d1b2e;
-      --line: rgba(74, 144, 200, 0.18);
-      --line-bright: rgba(74, 144, 200, 0.45);
-      --accent: #4a90c8;
-      --accent2: #7ec8e3;
-      --text: #cde4f5;
-      --text-dim: rgba(205, 228, 245, 0.5);
-      --text-faint: rgba(205, 228, 245, 0.25);
-      --white: #e8f4fd;
+      --bg: #f0f4f8;
+      --bg2: #e4ecf4;
+      --line: rgba(30, 80, 140, 0.12);
+      --line-bright: rgba(30, 80, 140, 0.28);
+      --accent: #1a5fa8;
+      --accent2: #0d3d7a;
+      --text: #071828;
+      --text-dim: rgba(7, 24, 40, 0.85);
+      --text-faint: rgba(7, 24, 40, 0.5);
+      --white: #0d1f35;
       --mono: 'Share Tech Mono', monospace;
       --head: 'Rajdhani', sans-serif;
       --cond: 'Barlow Condensed', sans-serif;
@@ -59,7 +59,7 @@
       align-items: center;
       padding: 0 40px;
       height: 60px;
-      background: rgba(8, 18, 30, 0.92);
+      background: rgba(240, 244, 248, 0.95);
       border-bottom: 1px solid var(--line-bright);
       backdrop-filter: blur(8px);
     }
@@ -183,7 +183,7 @@
 
     .hero-desc {
       font-size: 18px;
-      font-weight: 300;
+      font-weight: 500;
       color: var(--text-dim);
       max-width: 560px;
       line-height: 1.7;
@@ -210,7 +210,7 @@
 
     .btn-primary {
       background: var(--accent);
-      color: var(--bg);
+      color: #ffffff;
       border: 1px solid var(--accent);
     }
     .btn-primary:hover {
@@ -260,7 +260,7 @@
 
     .section-label {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 12px;
       color: var(--text-faint);
       letter-spacing: 4px;
       text-transform: uppercase;
@@ -289,7 +289,7 @@
 
     .about-text p {
       font-size: 17px;
-      font-weight: 300;
+      font-weight: 500;
       color: var(--text-dim);
       line-height: 1.8;
       margin-bottom: 20px;
@@ -302,7 +302,7 @@
     }
 
     .stat-box {
-      background: rgba(74,144,200,0.06);
+      background: rgba(26,95,168,0.06);
       border: 1px solid var(--line-bright);
       padding: 28px 24px;
       position: relative;
@@ -343,7 +343,7 @@
     }
 
     .project-card {
-      background: rgba(13, 27, 46, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border: 1px solid var(--line-bright);
       padding: 36px 32px;
       position: relative;
@@ -360,12 +360,12 @@
       transition: height 0.3s;
     }
 
-    .project-card:hover { background: rgba(74,144,200,0.07); }
+    .project-card:hover { background: rgba(26, 95, 168, 0.07); }
     .project-card:hover::before { height: 100%; }
 
     .project-num {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 12px;
       color: var(--text-faint);
       letter-spacing: 2px;
       margin-bottom: 16px;
@@ -381,8 +381,8 @@
     }
 
     .project-desc {
-      font-size: 14px;
-      font-weight: 300;
+      font-size: 15px;
+      font-weight: 500;
       color: var(--text-dim);
       line-height: 1.7;
       margin-bottom: 24px;
@@ -397,11 +397,11 @@
 
     .tag {
       font-family: var(--mono);
-      font-size: 9px;
+      font-size: 11px;
       letter-spacing: 1px;
       color: var(--accent);
-      border: 1px solid rgba(74,144,200,0.35);
-      padding: 4px 10px;
+      border: 1px solid rgba(26,95,168,0.4);
+      padding: 5px 12px;
       text-transform: uppercase;
     }
 
@@ -427,12 +427,12 @@
     .skill-group {
       border: 1px solid var(--line-bright);
       padding: 32px 28px;
-      background: rgba(13,27,46,0.6);
+      background: rgba(255, 255, 255, 0.7);
     }
 
     .skill-group-title {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 12px;
       color: var(--accent);
       letter-spacing: 3px;
       text-transform: uppercase;
@@ -467,10 +467,10 @@
       display: grid;
       grid-template-columns: 220px 1fr;
       border: 1px solid var(--line-bright);
-      background: rgba(13,27,46,0.6);
+      background: rgba(255,255,255,0.7);
       transition: background 0.2s;
     }
-    .exp-item:hover { background: rgba(74,144,200,0.06); }
+    .exp-item:hover { background: rgba(26,95,168,0.06); }
 
     .exp-meta {
       padding: 32px 28px;
@@ -479,14 +479,14 @@
 
     .exp-date {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 12px;
       color: var(--accent);
       letter-spacing: 1px;
       margin-bottom: 8px;
     }
 
     .exp-company {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--text-dim);
     }
@@ -502,8 +502,8 @@
     }
 
     .exp-desc {
-      font-size: 14px;
-      font-weight: 300;
+      font-size: 15px;
+      font-weight: 500;
       color: var(--text-dim);
       line-height: 1.7;
     }
@@ -518,8 +518,7 @@
     .edu-card {
       border: 1px solid var(--line-bright);
       padding: 36px 32px;
-      background: rgba(13,27,46,0.6);
-      position: relative;
+      background: rgba(255,255,255,0.7);
     }
 
     .edu-year {
@@ -546,8 +545,8 @@
 
     .edu-notes {
       font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-faint);
+      font-size: 13px;
+      color: var(--text-dim);
       line-height: 1.7;
     }
 
@@ -561,7 +560,7 @@
 
     .contact-text {
       font-size: 18px;
-      font-weight: 300;
+      font-weight: 500;
       color: var(--text-dim);
       line-height: 1.8;
       margin-bottom: 40px;
@@ -577,11 +576,11 @@
       border: 1px solid var(--line-bright);
       text-decoration: none;
       color: var(--text);
-      background: rgba(13,27,46,0.6);
+      background: rgba(255,255,255,0.7);
       transition: all 0.2s;
     }
     .contact-link:hover {
-      background: rgba(74,144,200,0.1);
+      background: rgba(26,95,168,0.1);
       border-color: var(--accent);
       color: var(--accent2);
     }
@@ -609,7 +608,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(8,18,30,0.9);
+      background: rgba(220, 232, 245, 0.95);
     }
 
     .footer-left {
@@ -956,9 +955,9 @@
         </p>
       </div>
       <div class="contact-links reveal">
-        <a href="mailto:mahmoud.amr55@gmail.com" class="contact-link">
+        <a href="/cdn-cgi/l/email-protection#1a777b7277756f7e347b77682f2f5a7d777b737634797577" class="contact-link">
           <span class="contact-link-label">EMAIL</span>
-          <span class="contact-link-value">mahmoud.amr55@gmail.com</span>
+          <span class="contact-link-value"><span class="__cf_email__" data-cfemail="1578747d787a60713b7478672020557278747c793b767a78">[email&#160;protected]</span></span>
         </a>
         <a href="https://www.linkedin.com/in/mahmoud-allam-4a25b4172/" target="_blank" class="contact-link">
           <span class="contact-link-label">LINKEDIN</span>
@@ -987,7 +986,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -1005,13 +1004,3 @@
     window.addEventListener('scroll', () => {
       let current = '';
       sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 100) current = s.id;
-      });
-      navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + current
-          ? 'var(--accent2)' : '';
-      });
-    });
-  </script>
-</body>
-</html>
