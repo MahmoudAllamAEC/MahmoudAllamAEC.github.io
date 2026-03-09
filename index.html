@@ -633,9 +633,13 @@
     }
 
     .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.animate-hidden {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .reveal.visible {
       opacity: 1;
@@ -955,9 +959,9 @@
         </p>
       </div>
       <div class="contact-links reveal">
-        <a href="/cdn-cgi/l/email-protection#1a777b7277756f7e347b77682f2f5a7d777b737634797577" class="contact-link">
+        <a href="mailto:mahmoud.amr55@gmail.com" class="contact-link">
           <span class="contact-link-label">EMAIL</span>
-          <span class="contact-link-value"><span class="__cf_email__" data-cfemail="1578747d787a60713b7478672020557278747c793b767a78">[email&#160;protected]</span></span>
+          <span class="contact-link-value">mahmoud.amr55@gmail.com</span>
         </a>
         <a href="https://www.linkedin.com/in/mahmoud-allam-4a25b4172/" target="_blank" class="contact-link">
           <span class="contact-link-label">LINKEDIN</span>
@@ -986,16 +990,20 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(el => el.classList.add('animate-hidden'));
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          setTimeout(() => {
+            e.target.classList.remove('animate-hidden');
+            e.target.classList.add('visible');
+          }, i * 80);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05 });
     reveals.forEach(el => observer.observe(el));
 
     // Active nav link
