@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mahmoud Allam — AEC Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #08121e;
+      --bg2: #0d1b2e;
+      --line: rgba(74, 144, 200, 0.18);
+      --line-bright: rgba(74, 144, 200, 0.45);
+      --accent: #4a90c8;
+      --accent2: #7ec8e3;
+      --text: #cde4f5;
+      --text-dim: rgba(205, 228, 245, 0.5);
+      --text-faint: rgba(205, 228, 245, 0.25);
+      --white: #e8f4fd;
+      --mono: 'Share Tech Mono', monospace;
+      --head: 'Rajdhani', sans-serif;
+      --cond: 'Barlow Condensed', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--head);
+      cursor: crosshair;
+      overflow-x: hidden;
+    }
+
+    /* BLUEPRINT GRID */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        linear-gradient(var(--line-bright) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-bright) 1px, transparent 1px);
+      background-size: 30px 30px, 30px 30px, 150px 150px, 150px 150px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      height: 60px;
+      background: rgba(8, 18, 30, 0.92);
+      border-bottom: 1px solid var(--line-bright);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--accent2);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::before {
+      content: '//';
+      margin-right: 4px;
+      color: var(--text-faint);
+    }
+
+    .nav-links a:hover { color: var(--accent2); }
+
+    /* HERO */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 80px 60px;
+      z-index: 1;
+    }
+
+    .hero-corner {
+      position: absolute;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 1px;
+    }
+    .hero-corner.tl { top: 80px; left: 40px; }
+    .hero-corner.tr { top: 80px; right: 40px; text-align: right; }
+    .hero-corner.bl { bottom: 40px; left: 40px; }
+    .hero-corner.br { bottom: 40px; right: 40px; text-align: right; }
+
+    /* crosshair corners */
+    .cross {
+      position: absolute;
+      width: 20px; height: 20px;
+    }
+    .cross::before, .cross::after {
+      content: '';
+      position: absolute;
+      background: var(--accent);
+      opacity: 0.6;
+    }
+    .cross::before { width: 1px; height: 100%; left: 50%; top: 0; }
+    .cross::after  { height: 1px; width: 100%; top: 50%; left: 0; }
+    .cross.tl { top: 72px; left: 32px; }
+    .cross.tr { top: 72px; right: 32px; }
+    .cross.bl { bottom: 32px; left: 32px; }
+    .cross.br { bottom: 32px; right: 32px; }
+
+    .hero-content { max-width: 900px; }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--cond);
+      font-size: clamp(64px, 10vw, 130px);
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--white);
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    h1 span {
+      color: transparent;
+      -webkit-text-stroke: 1px var(--accent);
+    }
+
+    .hero-subtitle {
+      font-family: var(--mono);
+      font-size: 14px;
+      color: var(--accent2);
+      letter-spacing: 3px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+
+    .hero-desc {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-dim);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: crosshair;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border: 1px solid var(--accent);
+    }
+    .btn-primary:hover {
+      background: var(--accent2);
+      border-color: var(--accent2);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent2);
+      border: 1px solid var(--accent);
+    }
+    .btn-outline:hover {
+      background: rgba(74,144,200,0.1);
+    }
+
+    /* DIMENSION LINE */
+    .dim-line {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin: 60px 0 0;
+      opacity: 0.4;
+    }
+    .dim-line::before, .dim-line::after {
+      content: '';
+      width: 1px; height: 16px;
+      background: var(--accent);
+      display: block;
+    }
+    .dim-line .line { flex: 1; height: 1px; background: var(--accent); }
+    .dim-line span {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      padding: 0 12px;
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 80px;
+      border-top: 1px solid var(--line-bright);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--cond);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 60px;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title span { color: var(--accent); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .stat-box {
+      background: rgba(74,144,200,0.06);
+      border: 1px solid var(--line-bright);
+      padding: 28px 24px;
+      position: relative;
+    }
+
+    .stat-box::before {
+      content: attr(data-label);
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text-faint);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stat-num {
+      font-family: var(--cond);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--accent2);
+      line-height: 1;
+    }
+
+    .stat-desc {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2px;
+    }
+
+    .project-card {
+      background: rgba(13, 27, 46, 0.8);
+      border: 1px solid var(--line-bright);
+      padding: 36px 32px;
+      position: relative;
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--accent);
+      transition: height 0.3s;
+    }
+
+    .project-card:hover { background: rgba(74,144,200,0.07); }
+    .project-card:hover::before { height: 100%; }
+
+    .project-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .project-name {
+      font-family: var(--cond);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--accent);
+      border: 1px solid rgba(74,144,200,0.35);
+      padding: 4px 10px;
+      text-transform: uppercase;
+    }
+
+    .project-link {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent2);
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .project-link:hover { color: var(--white); }
+    .project-link::after { content: ' →'; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2px;
+    }
+
+    .skill-group {
+      border: 1px solid var(--line-bright);
+      padding: 32px 28px;
+      background: rgba(13,27,46,0.6);
+    }
+
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line-bright);
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .skill-item::before {
+      content: '▸';
+      color: var(--accent);
+      font-size: 10px;
+    }
+
+    .skill-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      border: 1px solid var(--line-bright);
+      background: rgba(13,27,46,0.6);
+      transition: background 0.2s;
+    }
+    .exp-item:hover { background: rgba(74,144,200,0.06); }
+
+    .exp-meta {
+      padding: 32px 28px;
+      border-right: 1px solid var(--line-bright);
+    }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .exp-company {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .exp-body { padding: 32px 36px; }
+
+    .exp-role {
+      font-family: var(--cond);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .exp-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    /* EDUCATION */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+    }
+
+    .edu-card {
+      border: 1px solid var(--line-bright);
+      padding: 36px 32px;
+      background: rgba(13,27,46,0.6);
+      position: relative;
+    }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .edu-degree {
+      font-family: var(--cond);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .edu-school {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+
+    .edu-notes {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-faint);
+      line-height: 1.7;
+    }
+
+    /* CONTACT */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-text {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .contact-links { display: flex; flex-direction: column; gap: 2px; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      border: 1px solid var(--line-bright);
+      text-decoration: none;
+      color: var(--text);
+      background: rgba(13,27,46,0.6);
+      transition: all 0.2s;
+    }
+    .contact-link:hover {
+      background: rgba(74,144,200,0.1);
+      border-color: var(--accent);
+      color: var(--accent2);
+    }
+
+    .contact-link-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      min-width: 80px;
+    }
+
+    .contact-link-value {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--line-bright);
+      padding: 24px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(8,18,30,0.9);
+    }
+
+    .footer-left {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text-faint);
+      letter-spacing: 2px;
+    }
+
+    .footer-right {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text-faint);
+      letter-spacing: 2px;
+      text-align: right;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      section { padding: 60px 24px; }
+      #hero { padding: 100px 24px 60px; }
+      .about-grid, .contact-inner, .exp-item { grid-template-columns: 1fr; }
+      .exp-meta { border-right: none; border-bottom: 1px solid var(--line-bright); }
+      footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">MA // AEC.DEV</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="cross tl"></div>
+    <div class="cross tr"></div>
+    <div class="cross bl"></div>
+    <div class="cross br"></div>
+
+    <span class="hero-corner tl">SHEET 01 — COVER</span>
+    <span class="hero-corner tr">CAIRO, EGYPT<br/>30.0444° N, 31.2357° E</span>
+    <span class="hero-corner bl">SCALE: 1:1</span>
+    <span class="hero-corner br">REV: 2026</span>
+
+    <div class="hero-content">
+      <div class="hero-tag">AEC Software Developer</div>
+      <h1>MAHMOUD<br/><span>ALLAM</span></h1>
+      <div class="hero-subtitle">// ARCHITECT → BIM DEVELOPER</div>
+      <p class="hero-desc">
+        I started as an architect and learned that the most powerful tool in the building industry isn't a pencil — it's code. I build Revit plugins and BIM automation tools that turn hours of manual work into a single button click.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+      <div class="dim-line">
+        <div class="line"></div>
+        <span>END COVER SHEET</span>
+        <div class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">// SHEET 02</div>
+    <div class="section-title">ABOUT <span>ME</span></div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>
+          With a Bachelor's in Architecture and a specialized BIM Application Development diploma, I sit at the intersection of design thinking and engineering automation — a rare combination in the AEC software world.
+        </p>
+        <p>
+          My past experience at Hassan Allam Technologies and INJAZ Development gave me a deep understanding of real project pain points. Now I build the tools that solve them — Revit plugins, BIM automation scripts, and developer utilities that make AEC teams faster and smarter.
+        </p>
+        <p>
+          I'm also trained in GIS fundamentals and Project Management (PMP), giving me a broader perspective on how buildings, cities, and workflows all connect.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box" data-label="Experience">
+          <div class="stat-num">4+</div>
+          <div class="stat-desc">Years in AEC industry</div>
+        </div>
+        <div class="stat-box" data-label="Plugins Built">
+          <div class="stat-num">3+</div>
+          <div class="stat-desc">Revit API plugins</div>
+        </div>
+        <div class="stat-box" data-label="Background">
+          <div class="stat-num">B.SC</div>
+          <div class="stat-desc">Architecture, MIE</div>
+        </div>
+        <div class="stat-box" data-label="Location">
+          <div class="stat-num">CAI</div>
+          <div class="stat-desc">Cairo, Egypt</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">// SHEET 03</div>
+    <div class="section-title">FEATURED <span>PROJECTS</span></div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT — 001</div>
+        <div class="project-name">BOQ Exporter</div>
+        <p class="project-desc">
+          A Revit API plugin that extracts and exports a Bill of Quantities directly from Revit models into structured output — automating a tedious but critical AEC handoff workflow.
+        </p>
+        <div class="project-tags">
+          <span class="tag">C#</span>
+          <span class="tag">Revit API</span>
+          <span class="tag">Automation</span>
+        </div>
+        <a href="https://github.com/MahmoudAllamAEC/BOQExporter" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT — 002</div>
+        <div class="project-name">Levels Creator Add-in</div>
+        <p class="project-desc">
+          Automates the creation of building levels inside Revit — eliminating manual input and dramatically reducing setup time for new project models.
+        </p>
+        <div class="project-tags">
+          <span class="tag">C#</span>
+          <span class="tag">Revit API</span>
+          <span class="tag">Plugin</span>
+        </div>
+        <a href="https://github.com/MahmoudAllamAEC/Levels-Creator-Add-in" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT — 003</div>
+        <div class="project-name">Slope Analysis</div>
+        <p class="project-desc">
+          A C# Revit plugin for performing slope analysis on building elements, helping architects and engineers identify and validate slopes across models without manual calculations.
+        </p>
+        <div class="project-tags">
+          <span class="tag">C#</span>
+          <span class="tag">Revit API</span>
+          <span class="tag">Analysis</span>
+        </div>
+        <a href="https://github.com/MahmoudAllamAEC/Slope-Analysis" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT — 004</div>
+        <div class="project-name">Temp Cleaner</div>
+        <p class="project-desc">
+          A C# automation tool that cleans the Windows temp folder on a schedule and sends system notifications showing deleted file size and remaining disk space.
+        </p>
+        <div class="project-tags">
+          <span class="tag">C#</span>
+          <span class="tag">Automation</span>
+          <span class="tag">Desktop</span>
+        </div>
+        <a href="https://github.com/MahmoudAllamAEC/TempCleaner" class="project-link" target="_blank">View on GitHub</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">// SHEET 04</div>
+    <div class="section-title">TECHNICAL <span>SKILLS</span></div>
+    <div class="skills-grid">
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// Languages</div>
+        <div class="skill-item"><span class="skill-name">C#</span></div>
+        <div class="skill-item"><span class="skill-name">Python</span></div>
+        <div class="skill-item"><span class="skill-name">C / C++</span></div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// BIM & AEC</div>
+        <div class="skill-item"><span class="skill-name">Revit API</span></div>
+        <div class="skill-item"><span class="skill-name">Autodesk Revit</span></div>
+        <div class="skill-item"><span class="skill-name">AutoCAD</span></div>
+        <div class="skill-item"><span class="skill-name">Navisworks</span></div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// Design Tools</div>
+        <div class="skill-item"><span class="skill-name">Lumion</span></div>
+        <div class="skill-item"><span class="skill-name">SketchUp</span></div>
+        <div class="skill-item"><span class="skill-name">3ds Max</span></div>
+        <div class="skill-item"><span class="skill-name">Photoshop</span></div>
+        <div class="skill-item"><span class="skill-name">Rhino 3D</span></div>
+      </div>
+
+      <div class="skill-group reveal">
+        <div class="skill-group-title">// Other</div>
+        <div class="skill-item"><span class="skill-name">Git / GitHub</span></div>
+        <div class="skill-item"><span class="skill-name">GIS Fundamentals</span></div>
+        <div class="skill-item"><span class="skill-name">Project Management (PMP)</span></div>
+        <div class="skill-item"><span class="skill-name">Microsoft Office</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">// SHEET 05</div>
+    <div class="section-title">WORK <span>EXPERIENCE</span></div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">08/2025 – 01/2026</div>
+          <div class="exp-company">Kaitech Scholarship</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">BIM Application Development (Diploma)</div>
+          <p class="exp-desc">Focused on BIM software and automation tools, building practical Revit API plugins and learning software development practices applied to the AEC industry.</p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">04/2023 – 03/2024</div>
+          <div class="exp-company">INJAZ Development</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Junior Architect</div>
+          <p class="exp-desc">Collaborated with multidisciplinary teams on contract documents for major projects including Club Town, Murano (Wadi Degla / North Coast), and Hyatt Regency Cairo West (ALDAU Development).</p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">09/2022 – 11/2022</div>
+          <div class="exp-company">El-Eman Engineering</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Technical Office Engineer</div>
+          <p class="exp-desc">Worked as both site and technical office engineer, coordinating drawings and reviewing design documentation across projects.</p>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-date">04/2021 – 11/2021</div>
+          <div class="exp-company">Hassan Allam Technologies</div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Revit Modeler & Electrical Drafter</div>
+          <p class="exp-desc">Developed and modified Revit models ensuring accurate coordination between architectural and MEP departments. Produced detailed AutoCAD electrical drawings for the El-Kayan project at the New Administrative Capital.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label">// SHEET 06</div>
+    <div class="section-title">EDUCATION <span>&</span> TRAINING</div>
+    <div class="edu-grid">
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2017 – 2022</div>
+        <div class="edu-degree">Bachelor of Architecture</div>
+        <div class="edu-school">MIE — May Institution for Engineering</div>
+        <div class="edu-notes">Core training in architectural design, structural systems, and technical drawing.</div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2025 – 2026</div>
+        <div class="edu-degree">BIM Application Development</div>
+        <div class="edu-school">Kaitech Scholarship</div>
+        <div class="edu-notes">Specialized diploma in BIM software development, Revit API, and AEC automation.</div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2025</div>
+        <div class="edu-degree">PMP Course</div>
+        <div class="edu-school">Engovation</div>
+        <div class="edu-notes">Project Management Professional preparation covering agile, risk, and stakeholder management.</div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2024 – 2025</div>
+        <div class="edu-degree">CS50 Python & CS50 Computer Science</div>
+        <div class="edu-school">HarvardX (edX)</div>
+        <div class="edu-notes">Foundational and applied programming through Harvard's world-renowned online courses.</div>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-year">2025</div>
+        <div class="edu-degree">GIS Fundamentals</div>
+        <div class="edu-school">The Way Learning Center</div>
+        <div class="edu-notes">Geospatial data, mapping, and GIS tools applied to urban and infrastructure contexts.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">// SHEET 07</div>
+    <div class="section-title">GET IN <span>TOUCH</span></div>
+    <div class="contact-inner">
+      <div>
+        <p class="contact-text">
+          I'm open to AEC Developer roles, Revit plugin projects, and BIM automation opportunities. If you're building something in the AEC space — let's talk.
+        </p>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:mahmoud.amr55@gmail.com" class="contact-link">
+          <span class="contact-link-label">EMAIL</span>
+          <span class="contact-link-value">mahmoud.amr55@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mahmoud-allam-4a25b4172/" target="_blank" class="contact-link">
+          <span class="contact-link-label">LINKEDIN</span>
+          <span class="contact-link-value">in/mahmoud-allam-4a25b4172</span>
+        </a>
+        <a href="https://github.com/MahmoudAllamAEC" target="_blank" class="contact-link">
+          <span class="contact-link-label">GITHUB</span>
+          <span class="contact-link-value">MahmoudAllamAEC</span>
+        </a>
+        <a href="tel:+201204316985" class="contact-link">
+          <span class="contact-link-label">PHONE</span>
+          <span class="contact-link-value">+20 120 431 6985</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      DRAWN BY: MAHMOUD ALLAM &nbsp;|&nbsp; SHEET: 07/07 &nbsp;|&nbsp; DATE: 2026
+    </div>
+    <div class="footer-right">
+      AEC SOFTWARE DEVELOPER<br/>
+      CAIRO, EGYPT
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current
+          ? 'var(--accent2)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
